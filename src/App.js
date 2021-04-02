@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import GlobalStyles from './globalStyles';
+import configureStore from './store';
+import Landing from './pages/Landing';
+
+const { store, dispatch } = configureStore();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Fragment>
+        <GlobalStyles />
+        <Router dispatch={dispatch} store={store}>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+          </Switch>
+        </Router>
+      </Fragment>
+    </Provider>
   );
 }
 
