@@ -64,6 +64,6 @@ export const Button = styled.button `
     width: 12rem;
 
     &:hover {
-      background: #0271f2;
+      background: ${props => props.isActive ? '#08c20d' : '#0271f2'};
     }
 `;
